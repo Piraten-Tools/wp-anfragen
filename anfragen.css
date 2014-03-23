@@ -1,0 +1,32 @@
+#anfragen {}
+
+.anfragen-meta {
+	display: block;
+	overflow: auto;
+}
+
+.anfragen-meta span {
+	display: block;
+	float: left;
+}
+.anfragen-label {
+	min-width: 5em;
+	margin-right: 1em;
+}
+
+.anfragen-value {}
+
+
+
+.anfragen-blue {
+	color: #2996cc;
+}
+.anfragen-red {
+	color: #cc3314;
+}
+.anfragen-green {
+	color: #89b336;
+}
+.anfragen-orange {
+	color: #ff9500;
+}
