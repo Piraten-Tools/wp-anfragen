@@ -109,10 +109,7 @@ function display_anfragen_shortcode($atts) {
 
 	$return = '';
 	
-	$date_today = date('U');
-	
-	
-	
+
 	$listing = new WP_Query($args);
 	if ( $listing->have_posts() ):
 
@@ -124,9 +121,9 @@ function display_anfragen_shortcode($atts) {
 
 			$anfragen_meta = anfragen_build_meta();
 			
+			$output .= '<hr />';
 			$output .= '<h4><a href="'. get_permalink() .'">'. get_the_title() . '</a></h4>';
 			$output .= $anfragen_meta;
-			$output .= '<hr />';
 			
 			$return .= apply_filters( 'display_anfragen_shortcode', $output);
 
@@ -142,6 +139,7 @@ add_shortcode('anfragen', 'display_anfragen_shortcode');
 
 
 function anfragen_build_meta() {
+	$date_today = date('U');
 	$anfragen_meta = '';
 	
 	$date_done = get_post_meta( get_the_ID(), 'anfragen_response_date_field', true );
@@ -240,6 +238,7 @@ function anfragen_extend_content($content){
 	global $post;
 	if ($post->post_type == 'anfragen') {
 		$custom_content = anfragen_build_meta();
+		$custom_content .= '<hr />';
 		$custom_content .= $content;
 		return $custom_content;
 	} else {
