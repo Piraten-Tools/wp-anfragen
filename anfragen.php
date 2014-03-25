@@ -210,7 +210,7 @@ function display_anfragen_shortcode($atts) {
 			$output .= '<hr />';
 			
 			
-			$return .= apply_filters( 'display_posts_shortcode_output', $output, $title, $date );
+			$return .= apply_filters( 'display_anfragen_shortcode', $output);
 
 		endwhile;
 		
@@ -221,6 +221,7 @@ function display_anfragen_shortcode($atts) {
 	if (!empty($return)) return $return;
 }
 add_shortcode('anfragen', 'display_anfragen_shortcode');
+
 
 function anfragen_extend_content($content){
 	global $post;
