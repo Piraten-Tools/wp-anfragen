@@ -17,16 +17,29 @@
 .anfragen-value {}
 
 
-
+.anfragen-meta i {
+	font-style: normal;
+	font-size: 0.8em;
+	font-weight: 400;
+	line-height: 1.4em;
+	display: inline-block;
+	padding: 0 8px 1px;
+	margin-left: 4px;
+	
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+	
+	color: #fff;
+}
 .anfragen-blue {
-	color: #2996cc;
+	background: #2996cc;
 }
 .anfragen-red {
-	color: #cc3314;
+	background: #cc3314;
 }
 .anfragen-green {
-	color: #89b336;
+	background: #89b336;
 }
 .anfragen-orange {
-	color: #ff9500;
+	background: #ff9500;
 }

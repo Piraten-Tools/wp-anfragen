@@ -139,7 +139,7 @@ function display_anfragen_shortcode($atts) {
 						$anfrage_status = '';
 						$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
 						$anfrage_status .= ' ';
-						$anfrage_status .= '<i class="anfragen-green">(';
+						$anfrage_status .= '<i class="anfragen-green">';
 						$anfrage_status .= sprintf(
 							_n(
 								'after one day',
@@ -148,12 +148,12 @@ function display_anfragen_shortcode($atts) {
 								'anfragen'
 							), $time
 						);
-						$anfrage_status .= ')</i>';
+						$anfrage_status .= '</i>';
 					} else {
 						$anfrage_status = '';
 						$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
 						$anfrage_status .= ' ';
-						$anfrage_status .= '<i class="anfragen-orange">(';
+						$anfrage_status .= '<i class="anfragen-orange">';
 						$anfrage_status .= sprintf(
 							_n(
 								'after one day',
@@ -162,7 +162,7 @@ function display_anfragen_shortcode($atts) {
 								'anfragen'
 							), $time
 						);
-						$anfrage_status .= ')</i>';
+						$anfrage_status .= '</i>';
 					}
 				}
 				
@@ -174,7 +174,7 @@ function display_anfragen_shortcode($atts) {
 					$anfrage_status = '';
 					$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
 					$anfrage_status .= ' ';
-					$anfrage_status .= '<i class="anfragen-blue">(';
+					$anfrage_status .= '<i class="anfragen-blue">';
 					$anfrage_status .= sprintf(
 						_n(
 							'since one day',
@@ -183,13 +183,13 @@ function display_anfragen_shortcode($atts) {
 							'anfragen'
 						), $time
 					);
-					$anfrage_status .= ')</i>';
+					$anfrage_status .= '</i>';
 				} else {
 					$time = abs(ceil($time));
 						$anfrage_status = '';
 						$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
 						$anfrage_status .= ' ';
-						$anfrage_status .= '<i class="anfragen-red">(';
+						$anfrage_status .= '<i class="anfragen-red">';
 						$anfrage_status .= sprintf(
 							_n(
 								'since one day',
@@ -198,7 +198,7 @@ function display_anfragen_shortcode($atts) {
 								'anfragen'
 							), $time
 						);
-						$anfrage_status .= ')</i>';
+						$anfrage_status .= '</i>';
 				}
 			}
 			$output .= '<h4><a href="'. get_permalink() .'">'. get_the_title() . '</a></h4>';
