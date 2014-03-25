@@ -18,8 +18,8 @@ function create_post_type() {
 		'anfragen',
 		array(
 			'labels' => array(
-				'name' => __( 'Anfragen','anfragen' ),
-				'singular_name' => __( 'Anfrage','anfragen' )
+				'name' => __( 'Requests','anfragen' ),
+				'singular_name' => __( 'Request','anfragen' )
 			),
 			'public' => true,
 			'has_archive' => true,
@@ -37,7 +37,7 @@ function create_post_type() {
 function add_anfragen_meta_box( $post ) {
     add_meta_box( 
         'anfragen',
-        __('Datum der Antwort','anfragen'),
+        __('Request reply date','anfragen'),
         'anfragen_meta_box',
         'anfragen',
         'side',
