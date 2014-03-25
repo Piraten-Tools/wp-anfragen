@@ -12,7 +12,7 @@
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-load_plugin_textdomain('anfragen', basename( dirname( __FILE__ ) ) . '/languages/');
+load_plugin_textdomain('anfragen', false, basename( dirname( __FILE__ ) ) . '/languages');
 
 add_action( 'init', 'create_post_type' );
 function create_post_type() {
