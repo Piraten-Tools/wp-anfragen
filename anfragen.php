@@ -222,6 +222,21 @@ function display_anfragen_shortcode($atts) {
 }
 add_shortcode('anfragen', 'display_anfragen_shortcode');
 
+function anfragen_extend_content($content){
+	global $post;
+	if ($post->post_type == 'anfragen') {
+		$custom_content = '<p>[ANFRAGE META STUFF]</p>';
+		$custom_content .= $content;
+		return $custom_content;
+	} else {
+		return $content;
+	}
+}
+add_filter('the_content', 'anfragen_extend_content');
+
+
+
+
 function anfragen_add_styles() {
 	wp_enqueue_style( 'anfragen-css', plugins_url('anfragen.css', __FILE__), array());
 }
