@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Anfragen v0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-03-25 14:39:25+0000\n"
+"PO-Revision-Date: 2014-03-25 15:29:27+0000\n"
 "Last-Translator: zutrinken <mirgehtsganzgut@web.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,18 +56,63 @@ msgstr ""
 msgid "0.8"
 msgstr ""
 
-#: anfragen.php:21
+#: anfragen.php:23
 #@ anfragen
 msgid "Requests"
 msgstr "Anfragen"
 
-#: anfragen.php:22
+#: anfragen.php:24
 #@ anfragen
 msgid "Request"
 msgstr "Anfrage"
 
-#: anfragen.php:40
+#: anfragen.php:42
 #@ anfragen
 msgid "Request reply date"
 msgstr "Anfrage Antwort Datum"
+
+#: anfragen.php:140
+#: anfragen.php:154
+#@ anfragen
+msgid "Done"
+msgstr "Beantwortet"
+
+#: anfragen.php:145
+#: anfragen.php:159
+#, php-format
+#@ anfragen
+msgid "after one day"
+msgid_plural "after %s days"
+msgstr[0] "nach einem Tag"
+msgstr[1] "nach %s Tagen"
+
+#: anfragen.php:175
+#: anfragen.php:190
+#@ anfragen
+msgid "Open"
+msgstr "Offen"
+
+#: anfragen.php:180
+#: anfragen.php:195
+#, php-format
+#@ anfragen
+msgid "since one day"
+msgid_plural "since %s days"
+msgstr[0] "seit einem Tag"
+msgstr[1] "seit %s Tagen"
+
+#: anfragen.php:205
+#@ anfragen
+msgid "Date"
+msgstr "Datum"
+
+#: anfragen.php:207
+#@ anfragen
+msgid "Reply"
+msgstr "Antwort"
+
+#: anfragen.php:209
+#@ anfragen
+msgid "Status"
+msgstr "Status"
 

@@ -12,6 +12,8 @@
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+load_plugin_textdomain('anfragen', basename( dirname( __FILE__ ) ) . '/languages/');
+
 add_action( 'init', 'create_post_type' );
 function create_post_type() {
 	register_post_type(
@@ -134,9 +136,33 @@ function display_anfragen_shortcode($atts) {
 				if($timestamp > $date_create) {
 					$time = abs(ceil(($date_create - $timestamp) / (24*60*60)));
 					if($time <= 14) {
-						$anfrage_status = '<strong>Beantwortet</strong> <i class="anfragen-green">(nach ' . $time . ' Tagen)</i>';
+						$anfrage_status = '';
+						$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
+						$anfrage_status .= ' ';
+						$anfrage_status .= '<i class="anfragen-green">(';
+						$anfrage_status .= sprintf(
+							_n(
+								'after one day',
+								'after %s days',
+								$time,
+								'anfragen'
+							), $time
+						);
+						$anfrage_status .= ')</i>';
 					} else {
-						$anfrage_status = '<strong>Beantwortet</strong> <i class="anfragen-orange">(nach ' . $time . ' Tagen)</i>';
+						$anfrage_status = '';
+						$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
+						$anfrage_status .= ' ';
+						$anfrage_status .= '<i class="anfragen-orange">(';
+						$anfrage_status .= sprintf(
+							_n(
+								'after one day',
+								'after %s days',
+								$time,
+								'anfragen'
+							), $time
+						);
+						$anfrage_status .= ')</i>';
 					}
 				}
 				
@@ -144,17 +170,43 @@ function display_anfragen_shortcode($atts) {
 				$time = (($date_create + 14*24*60*60) - $date_today) / (24*60*60);
 				
 				if ($time >= 0) {
-					$anfrage_status = '<strong>Offen</strong> <i class="anfragen-blue">(noch ' . floor($time) . ' Tage übrig)</i>';
+					$time = floor($time);
+					$anfrage_status = '';
+					$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
+					$anfrage_status .= ' ';
+					$anfrage_status .= '<i class="anfragen-blue">(';
+					$anfrage_status .= sprintf(
+						_n(
+							'since one day',
+							'since %s days',
+							$time,
+							'anfragen'
+						), $time
+					);
+					$anfrage_status .= ')</i>';
 				} else {
-					$anfrage_status = '<strong>Offen</strong> <i class="anfragen-red">(seit ' . abs(ceil($time)) . ' Tagen überfällig)</i>';
+					$time = abs(ceil($time));
+						$anfrage_status = '';
+						$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
+						$anfrage_status .= ' ';
+						$anfrage_status .= '<i class="anfragen-red">(';
+						$anfrage_status .= sprintf(
+							_n(
+								'since one day',
+								'since %s days',
+								$time,
+								'anfragen'
+							), $time
+						);
+						$anfrage_status .= ')</i>';
 				}
 			}
 			$output .= '<h4><a href="'. get_permalink() .'">'. get_the_title() . '</a></h4>';
-			$output .= '<span class="anfragen-meta"><span class="anfragen-label">Datum:</span><span class="anfragen-value">'. get_the_date('d.m.Y') .'</span></span>';
+			$output .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Date','anfragen') . ':</span><span class="anfragen-value">'. get_the_date('d.m.Y') .'</span></span>';
 			if($date_done > 1) {
-				$output .= '<span class="anfragen-meta"><span class="anfragen-label">Antwort:</span><span class="anfragen-value">' . $date_done . '</span></span>';
+				$output .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Reply','anfragen') . ':</span><span class="anfragen-value">' . $date_done . '</span></span>';
 			}
-			$output .= '<span class="anfragen-meta"><span class="anfragen-label">Status:</span><span class="anfragen-value">' . $anfrage_status . '</span></span>';
+			$output .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Status','anfragen') . ':</span><span class="anfragen-value">' . $anfrage_status . '</span></span>';
 			$output .= '<hr />';
 			
 			
