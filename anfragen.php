@@ -122,93 +122,11 @@ function display_anfragen_shortcode($atts) {
 
 			$output = '';
 
-			$date_done = get_post_meta( get_the_ID(), 'anfragen_response_date_field', true );
+			$anfragen_meta = anfragen_build_meta();
 			
-			$date_create = get_the_date('U');
-
-			if($date_done > 1) {
-				list($day, $month, $year) = explode('-', $date_done);
-				$date_done = $day .'.'. $month .'.'. $year;
-				
-				$dt = DateTime::createFromFormat('d.m.Y', $date_done);
-				$timestamp = $dt->format('U');
-
-				if($timestamp > $date_create) {
-					$time = abs(ceil(($date_create - $timestamp) / (24*60*60)));
-					if($time <= 14) {
-						$anfrage_status = '';
-						$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
-						$anfrage_status .= ' ';
-						$anfrage_status .= '<i class="anfragen-green">';
-						$anfrage_status .= sprintf(
-							_n(
-								'after one day',
-								'after %s days',
-								$time,
-								'anfragen'
-							), $time
-						);
-						$anfrage_status .= '</i>';
-					} else {
-						$anfrage_status = '';
-						$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
-						$anfrage_status .= ' ';
-						$anfrage_status .= '<i class="anfragen-orange">';
-						$anfrage_status .= sprintf(
-							_n(
-								'after one day',
-								'after %s days',
-								$time,
-								'anfragen'
-							), $time
-						);
-						$anfrage_status .= '</i>';
-					}
-				}
-				
-			} else {
-				$time = (($date_create + 14*24*60*60) - $date_today) / (24*60*60);
-				
-				if ($time >= 0) {
-					$time = floor($time);
-					$anfrage_status = '';
-					$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
-					$anfrage_status .= ' ';
-					$anfrage_status .= '<i class="anfragen-blue">';
-					$anfrage_status .= sprintf(
-						_n(
-							'since one day',
-							'since %s days',
-							$time,
-							'anfragen'
-						), $time
-					);
-					$anfrage_status .= '</i>';
-				} else {
-					$time = abs(ceil($time));
-						$anfrage_status = '';
-						$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
-						$anfrage_status .= ' ';
-						$anfrage_status .= '<i class="anfragen-red">';
-						$anfrage_status .= sprintf(
-							_n(
-								'since one day',
-								'since %s days',
-								$time,
-								'anfragen'
-							), $time
-						);
-						$anfrage_status .= '</i>';
-				}
-			}
 			$output .= '<h4><a href="'. get_permalink() .'">'. get_the_title() . '</a></h4>';
-			$output .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Date','anfragen') . ':</span><span class="anfragen-value">'. get_the_date('d.m.Y') .'</span></span>';
-			if($date_done > 1) {
-				$output .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Reply','anfragen') . ':</span><span class="anfragen-value">' . $date_done . '</span></span>';
-			}
-			$output .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Status','anfragen') . ':</span><span class="anfragen-value">' . $anfrage_status . '</span></span>';
+			$output .= $anfragen_meta;
 			$output .= '<hr />';
-			
 			
 			$return .= apply_filters( 'display_anfragen_shortcode', $output);
 
@@ -223,10 +141,105 @@ function display_anfragen_shortcode($atts) {
 add_shortcode('anfragen', 'display_anfragen_shortcode');
 
 
+function anfragen_build_meta() {
+	$anfragen_meta = '';
+	
+	$date_done = get_post_meta( get_the_ID(), 'anfragen_response_date_field', true );
+	
+	$date_create = get_the_date('U');
+
+	if($date_done > 1) {
+		list($day, $month, $year) = explode('-', $date_done);
+		$date_done = $day .'.'. $month .'.'. $year;
+		
+		$dt = DateTime::createFromFormat('d.m.Y', $date_done);
+		$timestamp = $dt->format('U');
+
+		if($timestamp > $date_create) {
+			$time = abs(ceil(($date_create - $timestamp) / (24*60*60)));
+			if($time <= 14) {
+				$anfrage_status = '';
+				$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
+				$anfrage_status .= ' ';
+				$anfrage_status .= '<i class="anfragen-green">';
+				$anfrage_status .= sprintf(
+					_n(
+						'after one day',
+						'after %s days',
+						$time,
+						'anfragen'
+					), $time
+				);
+				$anfrage_status .= '</i>';
+			} else {
+				$anfrage_status = '';
+				$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
+				$anfrage_status .= ' ';
+				$anfrage_status .= '<i class="anfragen-orange">';
+				$anfrage_status .= sprintf(
+					_n(
+						'after one day',
+						'after %s days',
+						$time,
+						'anfragen'
+					), $time
+				);
+				$anfrage_status .= '</i>';
+			}
+		}
+		
+	} else {
+		$time = (($date_create + 14*24*60*60) - $date_today) / (24*60*60);
+		
+		if ($time >= 0) {
+			$time = floor($time);
+			$anfrage_status = '';
+			$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
+			$anfrage_status .= ' ';
+			$anfrage_status .= '<i class="anfragen-blue">';
+			$anfrage_status .= sprintf(
+				_n(
+					'since one day',
+					'since %s days',
+					$time,
+					'anfragen'
+				), $time
+			);
+			$anfrage_status .= '</i>';
+		} else {
+			$time = abs(ceil($time));
+				$anfrage_status = '';
+				$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
+				$anfrage_status .= ' ';
+				$anfrage_status .= '<i class="anfragen-red">';
+				$anfrage_status .= sprintf(
+					_n(
+						'since one day',
+						'since %s days',
+						$time,
+						'anfragen'
+					), $time
+				);
+				$anfrage_status .= '</i>';
+		}
+	}
+	
+	
+	$anfragen_meta .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Date','anfragen') . ':</span><span class="anfragen-value">'. get_the_date('d.m.Y') .'</span></span>';
+	if($date_done > 1) {
+		$anfragen_meta .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Reply','anfragen') . ':</span><span class="anfragen-value">' . $date_done . '</span></span>';
+	}
+	$anfragen_meta .= '<span class="anfragen-meta"><span class="anfragen-label">' . __('Status','anfragen') . ':</span><span class="anfragen-value">' . $anfrage_status . '</span></span>';
+	
+	return $anfragen_meta;
+}
+
+
+
 function anfragen_extend_content($content){
 	global $post;
 	if ($post->post_type == 'anfragen') {
-		$custom_content = '<p>[ANFRAGE META STUFF]</p>';
+		$custom_content = anfragen_build_meta();
 		$custom_content .= $content;
 		return $custom_content;
 	} else {
