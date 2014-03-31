@@ -187,10 +187,24 @@ function anfragen_build_meta() {
 		}
 		
 	} else {
-		$time = (($date_create + 14*24*60*60) - $date_today) / (24*60*60);
-		
-		if ($time >= 0) {
-			$time = floor($time);
+		$time = floor((($date_create + 14*24*60*60) - $date_today) / (24*60*60));
+		if ($time <= -1) {
+			$time = abs($time - 14);
+			$anfrage_status = '';
+			$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
+			$anfrage_status .= ' ';
+			$anfrage_status .= '<i class="anfragen-red">';
+			$anfrage_status .= sprintf(
+				_n(
+					'since one day',
+					'since %s days',
+					$time,
+					'anfragen'
+				), $time
+			);
+			$anfrage_status .= '</i>';
+		} else {
+			$time = abs($time - 14);
 			$anfrage_status = '';
 			$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
 			$anfrage_status .= ' ';
@@ -204,21 +218,6 @@ function anfragen_build_meta() {
 				), $time
 			);
 			$anfrage_status .= '</i>';
-		} else {
-			$time = abs(ceil($time));
-				$anfrage_status = '';
-				$anfrage_status .= '<strong>' . __('Open','anfragen') . '</strong>';
-				$anfrage_status .= ' ';
-				$anfrage_status .= '<i class="anfragen-red">';
-				$anfrage_status .= sprintf(
-					_n(
-						'since one day',
-						'since %s days',
-						$time,
-						'anfragen'
-					), $time
-				);
-				$anfrage_status .= '</i>';
 		}
 	}
 	
