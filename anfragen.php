@@ -154,7 +154,7 @@ function anfragen_build_meta() {
 		$timestamp = $dt->format('U');
 
 		if($timestamp > $date_create) {
-			$time = abs(ceil(($date_create - $timestamp) / (24*60*60)));
+			$time = abs(floor(($date_create - $timestamp) / (24*60*60)));
 			if($time <= 14) {
 				$anfrage_status = '';
 				$anfrage_status .= '<strong>' . __('Done','anfragen') . '</strong>';
