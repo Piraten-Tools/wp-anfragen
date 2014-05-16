@@ -3,7 +3,7 @@
 	Plugin Name: Anfragen
 	Plugin URI: https://github.com/zutrinken/anfragen
 	Description: Plugin um parlamentarische Anfragen zu dokumentieren
-	Version: 0.8
+	Version: 0.9
 	Author: Peter Amende
 	Author URI: http://zutrinken.com
 	Text Domain: anfragen
@@ -14,8 +14,8 @@
 
 load_plugin_textdomain('anfragen', false, basename( dirname( __FILE__ ) ) . '/languages');
 
-add_action( 'init', 'create_post_type' );
-function create_post_type() {
+add_action( 'init', 'create_anfragen_post_type' );
+function create_anfragen_post_type() {
 	register_post_type(
 		'anfragen',
 		array(
@@ -48,11 +48,11 @@ function add_anfragen_meta_box( $post ) {
 }
 add_action('add_meta_boxes', 'add_anfragen_meta_box');
 
-function add_custom_scripts() {
+function add_anfragen_custom_scripts() {
 	wp_enqueue_script('jquery-ui-datepicker');
 	wp_enqueue_script('anfragen-script', plugins_url( 'anfragen.js' , __FILE__ ), array(), true, true );
 }
-add_action('admin_head','add_custom_scripts');
+add_action('admin_head','add_anfragen_custom_scripts');
 
 function anfragen_meta_box($object, $box) {
 	global $post;
