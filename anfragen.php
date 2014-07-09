@@ -1,7 +1,7 @@
 <?php
 /*
 	Plugin Name: Anfragen
-	Plugin URI: https://github.com/zutrinken/anfragen
+	Plugin URI: https://github.com/zutrinken/wp-anfragen
 	Description: Plugin um parlamentarische Anfragen zu dokumentieren
 	Version: 0.9
 	Author: Peter Amende
